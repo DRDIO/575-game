@@ -1,0 +1,35 @@
+<form role="form" ng-submit="login()" class="ng-pristine ng-valid ng-valid-email">
+    <fieldset>
+        <legend>Start A Game</legend>
+        <div class="form-group has-success has-feedback">
+            <label>Nickname</label>
+            <input type="email" ng-model="email" class="form-control" placeholder="Enter Your Nickname">
+        </div>
+
+        <div class="form-group">
+          <div class="btn-group justified" ui-state="isNew" ui-default="false">
+            <a href="" class="btn btn-default" ui-turn-on="isNew" ui-class="{ active: isNew }">
+              New Game
+            </a>
+            <a href="" class="btn btn-default" ui-turn-off="isNew" ui-class="{ active: !isNew }">
+              Join Existing
+            </a>
+          </div>
+        </div>
+
+        <div ui-show="!isNew" class="form-group">
+          <label>Room Code</label>
+          <input type="email" ng-model="email" class="form-control" placeholder="Enter 4 Letter Code">
+        </div>
+    </fieldset>
+
+    <hr>
+
+    <button ui-show="isNew" class="btn btn-primary btn-block">
+        <i class="fa fa-plus"></i> New Game
+    </button>
+
+    <button ui-show="!isNew" class="btn btn-primary btn-block">
+        <i class="fa fa-sign-in"></i> Join Game
+    </button>
+</form>
