@@ -1,15 +1,22 @@
 {
   "name": "575-game",
   "version": "1.0.0",
-  "description": "",
+  "description": "575: The Haiku Card Game",
+  "reposityro": "github:DRDIO/575-game",
+  "license": "ISC",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "postinstall": "gulp build"
   },
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": "4.4.4",
+    "npm": "3.8.9"
+  },
+  "author": "kevin@nuut.co",
   "devDependencies": {
-    "@angular/router": "^2.0.0-rc.1",
+    "@angular/router": "^0.2.0",
     "angular": "^1.5.6",
     "del": "^2.2.0",
     "eslint": "^2.10.2",
@@ -23,10 +30,15 @@
     "gulp-angular-templatecache": "^1.8.0",
     "gulp-clean": "^0.3.2",
     "gulp-inject": "^4.1.0",
+    "gulp-less": "^3.1.0",
     "mobile-angular-ui": "^1.2.1",
+    "socket.io-client": "^1.4.6",
     "stream-series": "^0.1.1"
   },
   "dependencies": {
-    "@angular/router": "^0.2.0"
+    "express": "^4.13.4",
+    "lodash": "^4.13.1",
+    "q": "^1.4.1",
+    "socket.io": "^1.4.6"
   }
 }

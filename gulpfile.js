@@ -7,6 +7,7 @@ var angularFilesort = require('gulp-angular-filesort')
 var inject = require('gulp-inject')
 
 var vendorList = [
+  './node_modules/socket.io-client/socket.io.js',
   './node_modules/angular/angular.js',
   './node_modules/@angular/router/angular1/angular_1_router.js',
   './node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.js',
@@ -22,14 +23,14 @@ gulp.task('clean', () => {
 })
 
 gulp.task('build', ['clean'], () => {
-  var templateStream = gulp.src('./app/**/*.html')
+  var templateStream = gulp.src('./client/**/*.html')
       .pipe(templateCache({ module: '575-game' }))
       .pipe(gulp.dest('./www/js'))
 
   var vendorStream = gulp.src(vendorList, { base: './node_modules' })
     .pipe(gulp.dest('./www/lib'))
 
-  var appStream = gulp.src(['./app/**/*.js'])
+  var appStream = gulp.src(['./client/**/*.js'])
     .pipe(gulp.dest('./www/js'))
     .pipe(angularFilesort())
 
@@ -39,7 +40,7 @@ gulp.task('build', ['clean'], () => {
 })
 
 gulp.task('watch', () => {
-  gulp.watch('./app/**/*', ['build'])
+  gulp.watch('./client/**/*', ['build'])
 })
 
 gulp.task('default', ['build', 'watch'])
