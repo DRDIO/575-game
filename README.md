@@ -2,7 +2,8 @@
 
 ## Overview
 
-    |-- app             Angular Client for Cordova / Web
+    |-- client          Angular Client for Cordova / Web
+    |-- cordova         Cordova Build
     |-- server          Node.JS Server w/Express + Socket.io
     |-- www             Compiled Client
     |-- server.js       Primary Server Script
