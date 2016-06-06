@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; connect-src 'self' http://localhost:3080 ws://localhost:3080">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; connect-src 'self' http://localhost:8000 ws://localhost:8000">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -18,21 +18,24 @@
 <body>
     <app><!-- ANGULAR APP --></app>
 
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="index.js"></script>
+    <!-- UNCOMMENT THIS LINE FOR A CORDOVA BUILD -->
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
 
     <!-- inject:js -->
     <script src="lib/socket.io-client/socket.io.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/@angular/router/angular1/angular_1_router.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.js"></script>
     <script src="lib/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
     <script src="lib/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.js"></script>
     <script src="js/pregame/pregame.module.js"></script>
     <script src="js/pregame/signin/signin.component.js"></script>
     <script src="js/pregame/lobby/lobby.component.js"></script>
     <script src="js/layout/layout.module.js"></script>
-    <script src="js/layout/sidebar/sidebar.component.js"></script>
+    <script src="js/layout/modal/modal.service.js"></script>
+    <script src="js/layout/modal/modal.component.js"></script>
     <script src="js/layout/header/header.component.js"></script>
+    <script src="js/layout/sidebar/sidebar.component.js"></script>
     <script src="js/network/network.module.js"></script>
     <script src="js/network/socket.service.js"></script>
     <script src="js/core.module.js"></script>
@@ -41,6 +44,8 @@
     <script src="js/app.component.js"></script>
     <script src="js/templates.js"></script>
     <!-- endinject -->
+
+    <script type="text/javascript" src="index.js"></script>
 </body>
 
 </html>

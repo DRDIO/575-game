@@ -1,0 +1,18 @@
+<div class="modal" ui-if="appModal" ui-state='appModal'>
+  <div class="modal-backdrop in"></div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button ng-if="vm.modal.isClose()" ng-click="vm.modal.close()" class="close">&times;</button>
+        <h4 class="modal-title">{{ vm.modal.getTitle() }}</h4>
+      </div>
+      <div class="modal-body">
+        <p ng-bind-html="vm.modal.getContent()"></p>
+      </div>
+      <div class="modal-footer">
+        <button ng-if="vm.modal.isClose()" ng-click="vm.modal.close()" class="btn btn-default">{{ vm.modal.getTitleClose() }}</button>
+        <button ng-if="vm.fnAct" ng-click="vm.fnAct()" class="btn btn-primary">{{ vm.titleAct }}</button>
+      </div>
+    </div>
+  </div>
+</div>

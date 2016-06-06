@@ -10,7 +10,7 @@ module.exports = {
   join: join
 }
 
-function create (socket, name) {
+function create (socket, nickname) {
   var code = getNewCode()
   var room = new Room(code)
 
@@ -18,26 +18,34 @@ function create (socket, name) {
 
   socket.join(room.channel)
 
-  socket.emit('game:wait', {
-    room: room.code
+  socket.join(room.channel)
+
+  socket.emit('signin:enterLobby', {
+    nickname: nickname,
+    roomCode: room.code
   })
 
-  io.to(room.channel).emit('chat', {
-    message: name + ' has created ' + room.code
+  io.to(room.channel).emit('lobby:chat', {
+    message: nickname + ' has joined'
   })
 }
 
-function join (socket, name, code) {
+function join (socket, nickname, code) {
   var room = getExisting(code)
 
   if (!room) {
-    socket.emit('error', {
+    socket.emit('signin:error', {
       message: 'Room Does Not Exist'
     })
   } else {
     socket.join(room.channel)
-    io.to(room.channel).emit('chat', {
-      message: name + ' has joined'
+    socket.emit('signin:enterLobby', {
+      nickname: nickname,
+      roomCode: room.code
+    })
+
+    io.to(room.channel).emit('lobby:chat', {
+      message: nickname + ' has joined'
     })
   }
 }

@@ -1,3 +1,9 @@
-document.addEventListener('deviceready', function () {
+var startAngular = function () {
   angular.bootstrap(document.body, ['575-game'])
-}, false)
+}
+
+startAngular()
+
+/* CORDOVA SETUP
+document.addEventListener('deviceready', startAngular, false)
+*/

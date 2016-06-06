@@ -1,4 +1,7 @@
+/.idea
 /node_modules
+/www/js
+/www/lib
 
 # ANDROID / ECLIPSE
 

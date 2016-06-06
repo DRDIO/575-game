@@ -2,6 +2,7 @@ var path = require('path')
 var gulp = require('gulp')
 var series = require('stream-series')
 var clean = require('gulp-clean')
+var livereload = require('gulp-livereload')
 var templateCache = require('gulp-angular-templatecache')
 var angularFilesort = require('gulp-angular-filesort')
 var inject = require('gulp-inject')
@@ -10,6 +11,7 @@ var vendorList = [
   './node_modules/socket.io-client/socket.io.js',
   './node_modules/angular/angular.js',
   './node_modules/@angular/router/angular1/angular_1_router.js',
+  './node_modules/angular-sanitize/angular-sanitize.js',
   './node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.js',
   './node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.js',
   './node_modules/mobile-angular-ui/dist/css/mobile-angular-ui-base.css',
@@ -40,6 +42,7 @@ gulp.task('build', ['clean'], () => {
 })
 
 gulp.task('watch', () => {
+  livereload.listen()
   gulp.watch('./client/**/*', ['build'])
 })
 

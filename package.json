@@ -18,6 +18,7 @@
   "devDependencies": {
     "@angular/router": "^0.2.0",
     "angular": "^1.5.6",
+    "angular-sanitize": "^1.5.6",
     "del": "^2.2.0",
     "eslint": "^2.10.2",
     "eslint-config-angular": "^0.5.0",
@@ -31,7 +32,9 @@
     "gulp-clean": "^0.3.2",
     "gulp-inject": "^4.1.0",
     "gulp-less": "^3.1.0",
+    "gulp-livereload": "^3.8.1",
     "mobile-angular-ui": "^1.2.1",
+    "ng-sanitize": "0.0.2",
     "socket.io-client": "^1.4.6",
     "stream-series": "^0.1.1"
   },
