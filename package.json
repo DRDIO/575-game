@@ -15,7 +15,12 @@
     "npm": "3.8.9"
   },
   "author": "kevin@nuut.co",
-  "devDependencies": {
+  "dependencies": {
+    "express": "^4.13.4",
+    "lodash": "^4.13.1",
+    "q": "^1.4.1",
+    "socket.io": "^1.4.6",
+
     "@angular/router": "^0.2.0",
     "angular": "^1.5.6",
     "angular-sanitize": "^1.5.6",
@@ -38,11 +43,5 @@
     "ng-sanitize": "0.0.2",
     "socket.io-client": "^1.4.6",
     "stream-series": "^0.1.1"
-  },
-  "dependencies": {
-    "express": "^4.13.4",
-    "lodash": "^4.13.1",
-    "q": "^1.4.1",
-    "socket.io": "^1.4.6"
   }
 }
