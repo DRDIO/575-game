@@ -2,15 +2,15 @@ angular.module('575-network')
   .factory('Socket', Socket)
 
 function Socket ($window, $rootScope, socketUrl) {
-  var socket = $window.io.connect(socketUrl)
-  var listeners = {}
+  var _socket = $window.io.connect(socketUrl)
+  var _listeners = {}
 
   return {
     on: on,
     emit: emit
   }
 
-  /* IMPLEMENT  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+  /* PUBLIC * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   /**
    * @memberof Socket
@@ -18,18 +18,18 @@ function Socket ($window, $rootScope, socketUrl) {
    * @param callback
    */
   function on (eventName, callback) {
-    if (listeners[eventName]) {
-      socket.removeListener(eventName, listeners[eventName])
+    if (_listeners[eventName]) {
+      _socket.removeListener(eventName, _listeners[eventName])
     }
 
-    listeners[eventName] = function () {
-      var args = arguments;
+    _listeners[eventName] = function () {
+      var args = arguments
       $rootScope.$apply(function () {
-        callback.apply(socket, args)
+        callback.apply(_socket, args)
       })
     }
 
-    socket.on(eventName, listeners[eventName])
+    _socket.on(eventName, _listeners[eventName])
   }
 
   /**
@@ -39,11 +39,11 @@ function Socket ($window, $rootScope, socketUrl) {
    * @param callback
    */
   function emit (eventName, data, callback) {
-    socket.emit(eventName, data, function () {
+    _socket.emit(eventName, data, function () {
       var args = arguments
       $rootScope.$apply(function () {
         if (callback) {
-          callback.apply(socket, args)
+          callback.apply(_socket, args)
         }
       })
     })

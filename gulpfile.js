@@ -2,6 +2,8 @@ var path = require('path')
 var gulp = require('gulp')
 var series = require('stream-series')
 var clean = require('gulp-clean')
+var less = require('gulp-less')
+var cssmin = require('gulp-cssmin')
 var livereload = require('gulp-livereload')
 var templateCache = require('gulp-angular-templatecache')
 var angularFilesort = require('gulp-angular-filesort')
@@ -21,13 +23,20 @@ var vendorList = [
 ]
 
 gulp.task('clean', () => {
-  return gulp.src(['./www/js', './www/lib'], { read: false }).pipe(clean())
+  return gulp.src(['./www/js', './www/lib', './www/*.css'], { read: false }).pipe(clean())
 })
 
-gulp.task('build', ['clean'], () => {
+gulp.task('less', ['clean'], () => {
+  return gulp.src('./client/less/index.less')
+    .pipe(less())
+    .pipe(cssmin())
+    .pipe(gulp.dest('./www'))
+})
+
+gulp.task('app', ['clean', 'less'], () => {
   var templateStream = gulp.src('./client/**/*.html')
-      .pipe(templateCache({ module: '575-game' }))
-      .pipe(gulp.dest('./www/js'))
+    .pipe(templateCache({ module: '575-game' }))
+    .pipe(gulp.dest('./www/js'))
 
   var vendorStream = gulp.src(vendorList, { base: './node_modules' })
     .pipe(gulp.dest('./www/lib'))
@@ -43,7 +52,8 @@ gulp.task('build', ['clean'], () => {
 
 gulp.task('watch', () => {
   livereload.listen()
-  gulp.watch('./client/**/*', ['build'])
+  gulp.watch('./client/app/**/*', ['app'])
+  gulp.watch('./client/less**/*', ['less'])
 })
 
-gulp.task('default', ['build', 'watch'])
+gulp.task('default', ['clean', 'less', 'app', 'watch'])

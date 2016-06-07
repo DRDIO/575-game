@@ -1,0 +1,20 @@
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    Waiting On Users For <code>{{ vm.roomCode }}</code>
+  </div>
+
+  <div class="panel-body ng-binding">
+    At least <span class="badge">{{ vm.getWaitCount() }}</span> more are needed to play.
+  </div>
+</div>
+
+<ul class="list-group" ng-repeat="player in vm.players">
+  <li class="list-group-item">{{ player }}</li>
+</ul>
+
+
+<hr>
+
+<button class="btn btn-primary btn-block" ng-disabled="!vm.isReady()">
+  <i class="fa fa-gamepad"></i> Start Game
+</button>

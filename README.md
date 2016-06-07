@@ -2,11 +2,23 @@
 
 ## Overview
 
-    |-- client          Angular Client for Cordova / Web
-    |-- cordova         Cordova Build
-    |-- server          Node.JS Server w/Express + Socket.io
-    |-- www             Compiled Client
-    |-- server.js       Primary Server Script
+    +-- client              Game Client
+    | +-- app               Angular App
+    | | +-- layout          Thematic Components
+    | | +-- network         Sockets / Players / Rooms
+    | | +-- pregame         Signins / Lobby / Help
+    | | +-- app.*.js        Angular Startup
+    | | +-- app.*.html      Main Template
+    | +-- less              Precompiled CSS Stylesheets
+    +-- server              Node.JS Server w/Express + Socket.io
+    | +-- controller        Socket Events and Emitters
+    | +-- lib               Libraries
+    | +-- model             Data Models (Rooms / Players)
+    | +-- app.js            Server Startup
+    +-- cordova             Cordova Build
+    +-- www                 Compiled Client
+    +-- gulpfile.js         Client Compiler
+    +-- server.js           Primary Server Script
 
 ## Development Setup
 
@@ -32,8 +44,8 @@ In a new terminal, then start watching for client changes.
 
     gulp default
 
-You can then start Cordova to serve your page locally.
+## Cordova Building
 
-    cordova serve
+TBD
 
     
