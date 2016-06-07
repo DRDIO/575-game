@@ -8,13 +8,12 @@
   </div>
 </div>
 
-<ul class="list-group" ng-repeat="player in vm.players">
-  <li class="list-group-item">{{ player }}</li>
-</ul>
-
-
-<hr>
-
 <button class="btn btn-primary btn-block" ng-disabled="!vm.isReady()">
   <i class="fa fa-gamepad"></i> Start Game
 </button>
+
+<hr />
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="player in vm.players" ng-bind-html="player"></li>
+</ul>

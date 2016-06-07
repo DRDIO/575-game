@@ -1,1 +1,1 @@
-@media (min-width:768px){.app-body,.navbar{max-width:768px;margin:auto}}.list-group-item{position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd}
+@media (min-width:768px){.app-body,.navbar{max-width:768px;margin:auto}}.app-content .list-group{background-color:#fff;border-radius:4px;border:1px solid #ddd;overflow:hidden}.app-content .list-group-item{position:relative;display:block;padding:10px 15px;margin-bottom:-1px}.app-content .list-group-item:last-child{border-bottom:none}

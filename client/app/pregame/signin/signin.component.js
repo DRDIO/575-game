@@ -1,7 +1,7 @@
 angular.module('575-pregame')
   .component('signin', {
     templateUrl: 'app/pregame/signin/signin.template.html',
-    controller: SigninController,
+    controller: PregameSigninController,
     controllerAs: 'vm',
     bindings: { $router: '<' }
   })
@@ -14,7 +14,7 @@ angular.module('575-pregame')
  * @param Player
  * @constructor
  */
-function SigninController (SharedState, Socket, Modal, Player) {
+function PregameSigninController (SharedState, Socket, Modal, Player) {
   var vm = this
   var _isProcessing = false
 
@@ -38,11 +38,6 @@ function SigninController (SharedState, Socket, Modal, Player) {
 
   function onEnterLobby (data) {
     Player.set(data.nickname, data.room)
-
-    Modal.show('Room Created',
-      'Congratulations, ' + data.nickname + '! Your room has been created. Share the following code with your ' +
-      'friends so they can join you - <code>' + data.room.code + '</code>', true)
-
     goToLobby()
   }
 
@@ -53,7 +48,7 @@ function SigninController (SharedState, Socket, Modal, Player) {
   /* VIEW ACTIONS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
   function formatNickname () {
-    vm.nickname = vm.nickname.substr(0, 16)
+    vm.nickname = vm.nickname.substr(0, 16).toUpperCase()
   }
 
   function formatRoomCode () {
@@ -83,7 +78,6 @@ function SigninController (SharedState, Socket, Modal, Player) {
 
   function goToLobby () {
     vm.$router.navigate([ 'Lobby', {
-      nickname: Player.getNickname(),
       roomCode: Player.getRoom().code
     } ])
   }

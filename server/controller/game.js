@@ -1,7 +1,10 @@
-var q = require('q')
+'use strict'
+
 var _ = require('lodash')
 var io = require('./../lib/socket')
 var Room = require('../model/room')
+var Player = require('../model/player')
+var Deck = require('../model/deck')
 
 var roomList = {}
 
@@ -13,40 +16,42 @@ module.exports = {
 function create (socket, nickname) {
   var code = getNewCode()
   var room = new Room(code)
-  room.addPlayer(nickname)
+  var player = new Player(nickname)
+  var deck = new Deck()
+
+  room.addPlayer(player)
+  room.setDeck(deck)
 
   roomList[ code ] = room
 
   socket.join(room.channel)
 
   socket.emit('signin:enterLobby', {
-    nickname: nickname,
-    room: room
-  })
-
-  io.to(room.channel).emit('lobby:chat', {
-    message: nickname + ' has joined'
+    nickname: player.getDisplayName(),
+    room: room.getLobbyInfo()
   })
 }
 
 function join (socket, nickname, code) {
   var room = getExisting(code)
+  var player = new Player(nickname)
 
   if (!room) {
     socket.emit('signin:error', {
       message: 'Room Does Not Exist'
     })
   } else {
-    room.addPlayer(nickname)
-
-    socket.emit('signin:enterLobby', {
-      nickname: nickname,
-      room: room
-    })
+    room.addPlayer(player)
 
     socket.join(room.channel)
+
+    socket.emit('signin:enterLobby', {
+      nickname: player.getDisplayName(),
+      room: room.getLobbyInfo()
+    })
+
     io.to(room.channel).emit('lobby:playerAdded', {
-      room: room
+      room: room.getLobbyInfo()
     })
   }
 }

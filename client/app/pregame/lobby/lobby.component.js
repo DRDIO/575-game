@@ -1,13 +1,13 @@
 angular.module('575-pregame')
   .component('lobby', {
     templateUrl: 'app/pregame/lobby/lobby.template.html',
-    controller: LobbyController,
+    controller: PregameLobbyController,
     controllerAs: 'vm',
     bindings: { $router: '<' },
     $canActivate: rcActivate
   })
 
-function LobbyController (Player) {
+function PregameLobbyController (Socket, Player) {
   var vm = this
   var _room = Player.getRoom()
 
@@ -22,6 +22,13 @@ function LobbyController (Player) {
   function listen () {
     vm.roomCode = _room.code
     vm.players = _room.players
+
+    Socket.on('lobby:playerAdded', onPlayerAdded)
+  }
+
+  function onPlayerAdded (data) {
+    _room = Player.updateRoom(data.room)
+    vm.players = _room.players
   }
 
   /* VIEW ACTIONS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -30,7 +37,7 @@ function LobbyController (Player) {
     return Math.max(0, _room.minCount - _room.players.length)
   }
 
-  function isReady() {
+  function isReady () {
     return getWaitCount() === 0
   }
 

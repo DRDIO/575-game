@@ -1,19 +1,44 @@
+'use strict'
 var _ = require('lodash')
 
-module.exports = function Room (code) {
-  var vm = this
-
-  vm.code = code
-  vm.channel = 'room:' + vm.code
-  vm.players = []
-  vm.minCount = 2
-
-  vm.addPlayer = addPlayer
+class Room {
+  constructor (code) {
+    this.code = code
+    this.channel = 'room:' + this.code
+    this.players = []
+    this.minCount = 2
+    this.deck = null
+  }
 
   /* PUBLIC * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-  function addPlayer (nickname) {
-    vm.players.push(nickname)
-    vm.players = _.sortBy(_.uniq(vm.players))
+  getLobbyInfo () {
+    return {
+      code: this.code,
+      minCount: this.minCount,
+      players: this.getPlayerList()
+    }
+  }
+
+  addPlayer (player) {
+    var match = _.find(this.players, { nickname: player.nickname })
+    if (!match) {
+      this.players.push(player)
+      return player
+    }
+
+    return match
+  }
+
+  getPlayerList () {
+    return _.map(this.players, (player) => {
+      return player.getDisplayName()
+    })
+  }
+
+  setDeck (deck) {
+    this.deck = deck
   }
 }
+
+module.exports = Room

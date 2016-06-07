@@ -2,7 +2,7 @@ var path = require('path')
 var express = require('express')
 var app = express()
 var io = require('./lib/socket.js')
-var RoomCtrl = require('./controller/room')
+var GameCtrl = require('./controller/game')
 
 app.use(express.static(path.join(__dirname, '../www')))
 
@@ -13,9 +13,9 @@ app.get('/', function (req, res) {
 io.on('connection', (socket) => {
   socket.on('game:start', (data) => {
     if (data.roomCode) {
-      RoomCtrl.join(socket, data.nickname, data.roomCode)
+      GameCtrl.join(socket, data.nickname, data.roomCode)
     } else {
-      RoomCtrl.create(socket, data.nickname)
+      GameCtrl.create(socket, data.nickname)
     }
   })
 

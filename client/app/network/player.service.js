@@ -13,7 +13,8 @@ function Player () {
     set: set,
     getNickname: getNickname,
     getRoom: getRoom,
-    isInRoom: isInRoom
+    isInRoom: isInRoom,
+    updateRoom: updateRoom
   }
 
   /* PUBLIC * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -26,6 +27,15 @@ function Player () {
   function set (nickname, room) {
     _nickname = nickname
     _room = room
+  }
+
+  /**
+   * @memberof Player
+   * @param room
+   */
+  function updateRoom (room) {
+    _room = room
+    return _room
   }
 
   /**
