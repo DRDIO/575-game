@@ -7,12 +7,13 @@ angular.module('575-pregame')
     $canActivate: rcActivate
   })
 
-function PregameLobbyController (Socket, Player) {
+function PregameLobbyController (Socket, Player, Modal, clipboard) {
   var vm = this
   var _room = Player.getRoom()
 
   vm.getWaitCount = getWaitCount
   vm.isReady = isReady
+  vm.copyRoomUrl = copyRoomUrl
   vm.$routerCanDeactivate = rcDeactivate
 
   listen()
@@ -32,6 +33,11 @@ function PregameLobbyController (Socket, Player) {
   }
 
   /* VIEW ACTIONS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+  function copyRoomUrl () {
+    clipboard.copyText('https://nuutco-575-dev.herokuapp.com/#/signin/' + _room.code)
+    Modal.show('Link Copied', 'A shareable link to the game has been copied to your clipboard!', true)
+  }
 
   function getWaitCount () {
     return Math.max(0, _room.minCount - _room.players.length)

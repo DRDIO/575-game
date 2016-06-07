@@ -1,6 +1,9 @@
 <div class="panel panel-danger">
   <div class="panel-heading">
-    Waiting On Users For <code>{{ vm.roomCode }}</code>
+    Waiting On Users For
+    <span ng-click="vm.copyRoomUrl()">
+      <i class="fa fa-share"></i> <code>{{ vm.roomCode }}</code>
+    </span>
   </div>
 
   <div class="panel-body ng-binding">

@@ -14,6 +14,7 @@ var vendorList = [
   './node_modules/angular/angular.js',
   './node_modules/@angular/router/angular1/angular_1_router.js',
   './node_modules/angular-sanitize/angular-sanitize.js',
+  './node_modules/angular-clipboard/angular-clipboard.js',
   './node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.js',
   './node_modules/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.js',
   './node_modules/mobile-angular-ui/dist/css/mobile-angular-ui-base.css',
@@ -26,7 +27,7 @@ gulp.task('clean', () => {
   return gulp.src(['./www/js', './www/lib', './www/*.css'], { read: false }).pipe(clean())
 })
 
-gulp.task('less', ['clean'], () => {
+gulp.task('less', () => {
   return gulp.src('./client/less/index.less')
     .pipe(less())
     .pipe(cssmin())
@@ -52,7 +53,7 @@ gulp.task('build', ['clean', 'less'], () => {
 
 gulp.task('watch', () => {
   livereload.listen()
-  gulp.watch('./client/app/**/*', ['app'])
+  gulp.watch('./client/app/**/*', ['build'])
   gulp.watch('./client/less**/*', ['less'])
 })
 

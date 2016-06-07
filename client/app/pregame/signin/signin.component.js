@@ -25,6 +25,8 @@ function PregameSigninController (SharedState, Socket, Modal, Player) {
   vm.formatRoomCode = formatRoomCode
   vm.isDisabled = isDisabled
   vm.start = start
+
+  vm.$routerOnActivate = rcInit
   vm.$routerCanDeactivate = rcDeactivate
 
   listen()
@@ -69,6 +71,10 @@ function PregameSigninController (SharedState, Socket, Modal, Player) {
   }
 
   /* PRIVATE  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+  function rcInit (next) {
+    vm.roomCode = next.params.roomCode
+  }
 
   function rcDeactivate () {
     if (!Player.isInRoom()) {
