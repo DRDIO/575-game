@@ -33,7 +33,7 @@ gulp.task('less', ['clean'], () => {
     .pipe(gulp.dest('./www'))
 })
 
-gulp.task('app', ['clean', 'less'], () => {
+gulp.task('build', ['clean', 'less'], () => {
   var templateStream = gulp.src('./client/**/*.html')
     .pipe(templateCache({ module: '575-game' }))
     .pipe(gulp.dest('./www/js'))
@@ -56,4 +56,4 @@ gulp.task('watch', () => {
   gulp.watch('./client/less**/*', ['less'])
 })
 
-gulp.task('default', ['clean', 'less', 'app', 'watch'])
+gulp.task('default', ['clean', 'less', 'build', 'watch'])
