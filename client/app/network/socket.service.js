@@ -1,8 +1,8 @@
 angular.module('575-network')
   .factory('Socket', Socket)
 
-function Socket ($window, $rootScope, socketUrl) {
-  var _socket = $window.io.connect(socketUrl)
+function Socket ($window, $rootScope) {
+  var _socket = $window.io.connect()
   var _listeners = {}
 
   return {
