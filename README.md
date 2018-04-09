@@ -1,4 +1,4 @@
-# 575: The Haiku Card Game
+# 575: The Haiku Card Games
 
 ## Overview
 
@@ -47,5 +47,3 @@ In a new terminal, then start watching for client changes.
 ## Cordova Building
 
 TBD
-
-    
